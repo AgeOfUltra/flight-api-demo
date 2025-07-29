@@ -3,7 +3,6 @@
 🚀 A simple yet robust **Spring Boot REST API** for managing flight data.  
 Built with **Java 17**, **Spring Boot 3**, and **Maven**, this demo showcases clean REST design, DTOs, service layer, exception handling, and AOP-based logging.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Java Version](https://img.shields.io/badge/Java-17+-brightgreen.svg)](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-red.svg)](https://spring.io/projects/spring-boot)
 [![Build Tool](https://img.shields.io/badge/Build-Maven-blue.svg)](https://maven.apache.org/)
@@ -70,20 +69,20 @@ Content-Type: application/json
 ```
 ```json
 {
-  "flightNumber": "UL-101",
-  "origin": "Colombo",
-  "destination": "Maldives",
-  "departureTime": "2025-04-05T10:00:00Z",
-  "arrivalTime": "2025-04-05T12:00:00Z",
-  "airline": "UltraAir"
+  "flightName": "air express",
+    "model": "Airbus-321",
+    "departureDate": "2025-07-2T10:30:00Z", 
+    "origin": "Hyderabad",
+    "destination": "Delhi",
+    "capacity": 210
 }
 ```
 
 **Response** (`201 Created`):
 ```json
 {
-  "timestamp": "2025-04-01T10:00:00",
-  "message": "Flight ID 1 is saved successfully"
+  "dateTime": "2025-07-29T17:36:35.9560476",
+    "responseMessage": "Flight ID 2 is saved successfully"
 }
 ```
 
@@ -100,14 +99,14 @@ GET /flights/getAllFlights
 ```json
 [
   {
-    "id": 1,
-    "flightNumber": "UL-101",
-    "origin": "Colombo",
-    "destination": "Maldives",
-    "departureTime": "2025-04-05T10:00:00.000Z",
-    "arrivalTime": "2025-04-05T12:00:00.000Z",
-    "airline": "UltraAir"
-  }
+        "flightID": 2,
+        "flightName": "air express",
+        "model": "Airbus-321",
+        "departureDate": "2025-010-16T10:30:00Z",
+        "origin": "delhi",
+        "destination": "mumbai",
+        "capacity": 210
+    }
 ]
 ```
 
@@ -123,13 +122,13 @@ GET /flight/getFlightById/1
 **Response**:
 ```json
 {
-  "id": 1,
-  "flightNumber": "UL-101",
-  "origin": "Colombo",
-  "destination": "Maldives",
-  "departureTime": "2025-04-05T10:00:00.000Z",
-  "arrivalTime": "2025-04-05T12:00:00.000Z",
-  "airline": "UltraAir"
+    "flightID": 2,
+    "flightName": "air express",
+    "model": "Airbus-321",
+    "departureDate": "2025-07-2T10:30:00Z",
+    "origin": "Hyderabad",
+    "destination": "Delhi",
+    "capacity": 210
 }
 ```
 
@@ -144,21 +143,22 @@ Content-Type: application/json
 ```
 ```json
 {
-  "id": 1,
-  "flightNumber": "UL-102",
-  "origin": "Colombo",
-  "destination": "Bangkok",
-  "departureTime": "2025-04-06T09:00:00Z",
-  "arrivalTime": "2025-04-06T11:30:00Z",
-  "airline": "UltraAir"
+    "flightID":2,
+    "flightName": "air express",
+    "model": "Airbus-321",
+    "departureDate": "2025-010-16T10:30:00Z", 
+    "origin": "delhi",
+    "destination": "mumbai",
+    "capacity": 210
+
 }
 ```
 
 **Response**:
 ```json
 {
-  "timestamp": "2025-04-01T10:05:00",
-  "message": "Flight updated successfully for flight ID 1"
+    "dateTime": "2025-07-29T17:38:37.9588352",
+    "responseMessage": "Existing flight is updated with flight Name air express"
 }
 ```
 
@@ -174,7 +174,7 @@ DELETE /flight/deleteFlight/1
 **Response**:
 ```json
 {
-  "timestamp": "2025-04-01T10:10:00",
+  "dateTime": "2025-04-01T10:10:00",
   "message": "Flight deleted successfully for flight ID 1"
 }
 ```
@@ -255,15 +255,6 @@ src/main/java/com/flight/api/
 3. Commit changes: `git commit -m 'Add feature'`
 4. Push: `git push origin feature/name`
 5. Open a Pull Request
-
----
-
-## 📄 License
-
-MIT © [AgeOfUltra](https://github.com/AgeOfUltra)  
-See [LICENSE](LICENSE) for details.
-
----
 
 ## 🙏 Acknowledgements
 
