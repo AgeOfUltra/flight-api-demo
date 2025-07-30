@@ -3,6 +3,7 @@ package com.flight.api.controller;
 import com.flight.api.model.FlightDto;
 import com.flight.api.service.IFlightService;
 import com.flight.api.utils.FlightSuccessResponse;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +26,7 @@ public class FlightController {
     }
 
     @PostMapping("/flights/addFlight")
-    public ResponseEntity<?> addFlight(@RequestBody FlightDto flightDto){
+    public ResponseEntity<?> addFlight(@Valid  @RequestBody FlightDto flightDto){
        String flightID =  service.saveFlight(flightDto);
         FlightSuccessResponse response = new FlightSuccessResponse(LocalDateTime.now(),"Flight ID "+flightID+" is saved successfully");
        return  ResponseEntity.status(HttpStatus.CREATED).body(response);
@@ -38,7 +39,7 @@ public class FlightController {
     }
 
     @PutMapping("/flight/updateFlight")
-    public ResponseEntity<?> updateFlight(@RequestBody  FlightDto flightDto){
+    public ResponseEntity<?> updateFlight(@Valid @RequestBody  FlightDto flightDto){
         String result = service.updateFlight(flightDto);
         FlightSuccessResponse response = new FlightSuccessResponse(LocalDateTime.now(),result);
         return  ResponseEntity.status(HttpStatus.OK).body(response);
