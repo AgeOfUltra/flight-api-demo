@@ -19,6 +19,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class FlightServiceImp implements IFlightService{
 
     boolean isUpdatedValue = false;
@@ -41,7 +42,7 @@ public class FlightServiceImp implements IFlightService{
 
 
     @Override
-    @Transactional
+//    @Transactional
     @SyncFlightData(action = "CREATE")
     public String saveFlight(FlightDto flightDto) {
         if(validation.departureDateValidate(flightDto)){
@@ -59,7 +60,7 @@ public class FlightServiceImp implements IFlightService{
     }
 
     @Override
-    @Transactional
+//    @Transactional
     public String updateFlight(FlightDto flightDto) {
         Flight savedFlight;
 
@@ -84,13 +85,13 @@ public class FlightServiceImp implements IFlightService{
     }
 
     @Override
-    @Transactional
+//    @Transactional
     public String deleteFlight(int flightID) {
         Optional<Flight> flight =  allFlights.stream().filter(a -> a.getFlightID()==flightID).findFirst();
        if(flight.isEmpty()){
            throw new FlightNotFoundException( "Delete Operation failed");
        }else{
-           flightRepository.deleteFlightByFlightID(flightID);
+           flightRepository.deleteById(flightID);
            isUpdatedValue=false;
            return "Deleted Successfully";
        }

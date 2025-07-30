@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IFlightRepository extends JpaRepository<Flight,Integer> {
 
-    @Modifying
-    @Query("delete from Flight f where f.flightID = :flightID")
-    void deleteFlightByFlightID(@Param("flightID") int  flightID);
+//    @Modifying
+//    @Query("delete from Flight f where f.flightID = :flightID")
+//    void deleteFlightByFlightID(@Param("flightID") int  flightID);
 }
