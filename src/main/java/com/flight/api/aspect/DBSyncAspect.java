@@ -1,4 +1,4 @@
-package com.flight.api.logger;
+package com.flight.api.aspect;
 
 
 import com.flight.api.service.FlightServiceImp;
@@ -14,7 +14,7 @@ public class DBSyncAspect {
     @Autowired
     public FlightServiceImp flightServiceImp;
 
-    @Before("@annotation(SyncFlightData)")
+    @Before("@annotation(com.flight.api.aspect.SyncFlightData)")
     public void dbSync(){
         flightServiceImp.syncDbAndLocal();
     }
